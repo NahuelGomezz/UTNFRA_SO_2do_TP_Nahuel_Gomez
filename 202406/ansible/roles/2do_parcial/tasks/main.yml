@@ -1,6 +1,22 @@
----
-# tasks file for 2do_parcial
-
-- debug:
-    msg: "Tareas del 2do Parcial"
-
+- name: "Crear estructura de directtorios"
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0775'
+  with_items:
+    - "/tmp/2do_parcial/alumno"
+    - "/tmp/2do_parcial/equipo"
+- name: "Generar archivo de datos del alumno"
+  template:
+    src: "datos_alumno.j2"
+    dest: "/tmp/2do_parcial/alumno/datos_alumno.txt"
+- name: "Generar archivo de datos del equipo"
+  template:
+    src: "datos_equipo.j2"
+    dest: "/tmp/2do_parcial/equipo/datos_equipo.txt"
+- name: "Configurar sudoers para el grupo 2PSupervisores"
+  become: yes
+  copy:
+    content: "%2PSupervisores ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/2PSupervisores"
+    validate: '/usr/sbin/visudo -cf %s'

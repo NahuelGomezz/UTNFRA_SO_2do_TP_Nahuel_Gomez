@@ -1,2 +1,3 @@
----
-# vars file for 2do_parcial
+nombre_alumno: "Nahuel"
+apellido_alumno: "Gomez"
+division_alumno: "115"

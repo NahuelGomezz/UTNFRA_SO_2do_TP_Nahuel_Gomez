@@ -1,0 +1,523 @@
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git 
+./UTN-FRA_SO_Examenes/202406/script_Precondicion.sh
+source ~/.bashrc
+mkdir -p ~/RTA_Examen_$(date +%Y%m%d)
+git clone https://github.com/NahuelGomezz/TP2_AySO.git
+sudo fdisk -l
+vagrant reload
+cd
+journalctl -k | grep -i attached
+lsblk
+sudo journalctl -k | grep -i attached
+vagrant plugin list
+sudo vagrant plugin list
+logout
+history
+sudo fdisk -l
+sudo fdisk /dev/sdc << FIN
+n
+p
+1
+
+t
+8e
+w
+FIN
+
+m
+sudo fdisk /dev/sdc
+sudo fdisk -l /dev/sdc
+lsblk
+sudo fdisk -l /dev/sdc
+sudo fdisk -l
+sudo fdisk /dev/sdd
+sudo wipefs -a /dev/sdc1 /dev/sdd1
+sudo pvcreate /dev/sdc1 /dev/sdd1
+sudo vgcreate vg_datos /dev/sdc1
+sudo vgcreate vg_temp /dev/sdd1
+sudo lvcreate -L 5M vg_datos -n lv_docker
+sudo lvcreate -L 1.5G vg_datos -n lv_workareas
+sudo lvcreate -L 512M vg_temp -n lv_swap
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_docker
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_workareas
+sudo mkswap /dev/mapper/vg_temp-lv_swap
+sudo swapon /dev/mapper/vg_temp-lv_swap
+sudo mkdir -p /var/lib/docker/
+sudo mkdir -p /work/
+sudo mount /dev/mapper/vg_datos-lv_docker /var/lib/docker/
+sudo mount /dev/mapper/vg_datos-lv_workareas /work/
+free -h
+sudo su -c "echo '/dev/mapper/vg_datos-lv_docker /var/lib/docker/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_datos-lv_workareas /work/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_temp-lv_swap none swap sw 0 0' >> /etc/fstab"
+sudo pvs
+sudo vgs
+df -h
+cat /etc/fstab
+cat << FIN > ~/RTA_Examen_$(date +%Y%m%d)/Punto_A.sh
+#!/bin/bash
+sudo fdisk /dev/sdc
+sudo fdisk /dev/sdd
+sudo wipefs -a /dev/sdc1 /dev/sdd1
+sudo pvcreate /dev/sdc1 /dev/sdd1
+sudo vgcreate vg_datos /dev/sdc1
+sudo vgcreate vg_temp /dev/sdd1
+sudo lvcreate -L 5M vg_datos -n lv_docker
+sudo lvcreate -L 1.5G vg_datos -n lv_workareas
+udo lvcreate -L 512M vg_temp -n lv_swap
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_docker
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_workareas
+sudo mkswap /dev/mapper/vg_temp-lv_swap
+sudo swapon /dev/mapper/vg_temp-lv_swap
+sudo mkdir -p /var/lib/docker/
+sudo mkdir -p /work/
+sudo mount /dev/mapper/vg_datos-lv_docker /var/lib/docker/
+sudo mount /dev/mapper/vg_datos-lv_workareas /work/
+sudo su -c "echo '/dev/mapper/vg_datos-lv_docker /var/lib/docker/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_datos-lv_workareas /work/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_temp-lv_swap none swap sw 0 0' >> /etc/fstab"
+FIN
+
+mkdir -p ~/RTA_Examen_$(date +%Y%m%d)
+cat << FIN > ~/RTA_Examen_$(date +%Y%m%d)/Punto_A.sh
+#!/bin/bash
+sudo fdisk /dev/sdc
+sudo fdisk /dev/sdd
+sudo wipefs -a /dev/sdc1 /dev/sdd1
+sudo pvcreate /dev/sdc1 /dev/sdd1
+sudo vgcreate vg_datos /dev/sdc1
+sudo vgcreate vg_temp /dev/sdd1
+sudo lvcreate -L 5M vg_datos -n lv_docker
+sudo lvcreate -L 1.5G vg_datos -n lv_workareas
+sudo lvcreate -L 512M vg_temp -n lv_swap
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_docker
+sudo mkfs.ext4 /dev/mapper/vg_datos-lv_workareas
+sudo mkswap /dev/mapper/vg_temp-lv_swap
+sudo swapon /dev/mapper/vg_temp-lv_swap
+sudo mkdir -p /var/lib/docker/
+sudo mkdir -p /var/lib/docker/
+sudo mkdir -p /work/
+sudo mount /dev/mapper/vg_datos-lv_docker /var/lib/docker/
+sudo mount /dev/mapper/vg_datos-lv_workareas /work/
+sudo su -c "echo '/dev/mapper/vg_datos-lv_docker /var/lib/docker/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_datos-lv_workareas /work/ ext4 defaults 0 0' >> /etc/fstab"
+sudo su -c "echo '/dev/mapper/vg_temp-lv_swap none swap sw 0 0' >> /etc/fstab"
+FIN
+
+cd
+cd ~
+git clone https://github.com/NahuelGomezz/UTNFRA_SO_2do_TP_Nahuel_Gomez.git
+cd UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cp -r ~/RTA_Examen_$(date +%Y%m%d)
+cp --help
+cp -r ~/RTA_Examen_$(date +%Y%m%d) ~/UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cat RTA_Examen_20260620/
+cat -l
+cat --help
+ls -l
+cd RTA_Examen_20260620/
+ls -l
+cat Punto_A.sh 
+cd
+git add .
+cd UTNFRA_SO_2do_TP_Nahuel_Gomez/
+git add .
+git commit -m "ADD: Punto_A.sh"
+git config --global user.name "Nahuel Gomez"
+git config --global user.email "nahuelagustingomez008@gmail.com"
+git status
+git commit -m "ADD: Punto_A.sh"
+git status
+git push
+git push origin main
+git status
+git push
+s
+q
+git push
+git status
+REPO_PATH="~/UTN-FRA_SO_Examenes"
+FECHA=$(date +%Y%m%d)
+MI_APELLIDO="Gomez"
+sudo cat << 'FIN' > /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+#!/bin/bash
+USUARIO_REF=$1
+LISTA=$2
+CLAVE_HASH=$(sudo grep "^${USUARIO_REF}:" /etc/shadow | awk -F ':' '{print $2}')
+while IFS=":" read -r USUARIO GRUPO HOME_DIR
+do
+FIN
+
+sudo rm -f /usr/local/bin/GomezAltaUser-Groups.sh
+sudo cat << 'FIN' > /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+#!/bin/bash
+USUARIO_REF=$1
+LISTA=$2
+CLAVE_HASH=$(sudo grep "^${USUARIO_REF}:" /etc/shadow | awk -F ':' '{print $2}')
+while IFS=":" read -r USUARIO GRUPO HOME_DIR
+do
+    [[ "$USUARIO" =~ ^#.* ]] && continue
+    [ -z "$USUARIO" ] && continue
+    sudo groupadd -f "$GRUPO"
+    sudo useradd -m -s /bin/bash -g "$GRUPO" -d "$HOME_DIR" -p "$CLAVE_HASH" "$USUARIO"
+done < "$LISTA"
+FIN
+
+sudo rm -f /usr/local/bin/GomezAltaUser-Groups.sh
+cat << 'FIN' | sudo tee /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+#!/bin/bash
+USUARIO_REF=$1
+LISTA=$2
+CLAVE_HASH=$(sudo grep "^${USUARIO_REF}:" /etc/shadow | awk -F ':' '{print $2}')
+while IFS=":" read -r USUARIO GRUPO HOME_DIR
+do
+    [[ "$USUARIO" =~ ^#.* ]] && continue
+    [ -z "$USUARIO" ] && continue
+    sudo groupadd -f "$GRUPO"
+    sudo useradd -m -s /bin/bash -g "$GRUPO" -d "$HOME_DIR" -p "$CLAVE_HASH" "$USUARIO"
+done < "$LISTA"
+FIN
+
+sudo chmod +x /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+sudo /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh Nahuel_Gomez ~/UTN-FRA_SO_Examenes/202406/bash_script/Lista_Usuarios.txt
+cat ~/UTN-FRA_SO_Examenes/202406/bash_script/Lista_Usuarios.txt
+sudo rm -f /usr/local/bin/GomezAltaUser-Groups.sh
+cat << 'FIN' | sudo tee /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+#!/bin/bash
+USUARIO_REF=$1
+LISTA=$2
+CLAVE_HASH=$(sudo grep "^${USUARIO_REF}:" /etc/shadow | awk -F ':' '{print $2}')
+while IFS="," read -r USUARIO GRUPO HOME_DIR
+do
+    [[ "$USUARIO" =~ ^#.* ]] && continue
+    [ -z "$USUARIO" ] && continue
+    sudo groupadd -f "$GRUPO"
+    sudo useradd -m -s /bin/bash -g "$GRUPO" -d "$HOME_DIR" -p "$CLAVE_HASH" "$USUARIO"
+done < "$LISTA"
+FIN
+
+sudo chmod +x /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+sudo /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh Nahuel_Gomez ~/UTN-FRA_SO_Examenes/202406/bash_script/Lista_Usuarios.txt
+tail -n 10 /etc/passwd
+grep -E "p1c1" /etc/group
+grep "2P_GDesa" /etc/group
+grep "2P_GTest" /etc/group
+cp /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh ~/RTA_Examen_${FECHA}/
+ls ~/RTA_Examen_$(date +%Y%m%d)
+ls ~
+ls ~/RTA_Examen_20260620/
+cp /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh ~/RTA_Examen_20260620/
+ls ~/RTA_Examen_20260620/
+cat << 'FIN' > ~/RTA_Examen_20260620/Punto_B.sh
+#!/bin/bash
+REPO_PATH="$HOME/UTN-FRA_SO_Examenes"
+LISTA="$REPO_PATH/202406/bash_script/Lista_Usuarios.txt"
+MI_APELLIDO="Gomez"
+sudo su -c "cat << 'FIN1' > /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+#!/bin/bash
+USUARIO_REF=\$1
+LISTA_USUARIOS=\$2
+CLAVE_HASH=\$(grep \"^\${USUARIO_REF}:\" /etc/shadow | awk -F ':' '{print \$2}')
+while IFS=',' read -r USUARIO GRUPO HOME_DIR
+do
+    [[ \"\$USUARIO\" =~ ^#.* ]] && continue
+    [ -z \"\$USUARIO\" ] && continue
+    groupadd -f \"\$GRUPO\"
+    useradd -m -s /bin/bash -g \"\$GRUPO\" -d \"\$HOME_DIR\" -p \"\$CLAVE_HASH\" \"\$USUARIO\"
+done < \"\$LISTA_USUARIOS\"
+FIN1
+sudo chmod +x /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh
+sudo /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh $(whoami) $LISTA
+cp /usr/local/bin/${MI_APELLIDO}AltaUser-Groups.sh ~/RTA_Examen_20260620/
+FIN
+
+chmod +x ~/RTA_Examen_20260620/Punto_B.sh
+ls -l RTA_Examen_20260620/
+git status
+cd
+cd ~/UTNFRA_SO_2do_TP_Nahuel_Gomez/
+git status
+cp -r ~/RTA_Examen_20260620/ .
+git status
+git add .
+git commit -m "ADD: Hecho Punto B y agregado script de automatizacion"
+git push origin main
+ls -l RTA_Examen_20260620/
+git add .
+cd ~/UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cp -r ~/RTA_Examen_20260620/ .
+git status
+git add .
+git commit -m "ADD: Hecho Punto B y agregado script de automatizacion"
+git status
+git push origin main
+git status
+git log --oneline -5
+git fetch origin
+git log --oneline --all --graph -10
+git push --force origin main
+git status
+cd
+sudo usermod -a -G docker $(whoami)
+cd ~/UTN-FRA_SO_Examenes/202406/docker/
+ls
+ls -l
+cd
+ls -l ~/UTN-FRA_SO_Examenes/202406
+cd ~/UTN-FRA_SO_Examenes/202406/docker/
+cat << FIN > index.html
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>2do Parcial - Docker</h1>
+    <p>Nombre: Nahuel Apellido: Gomez</p>
+    <p>Division: tu-division</p>
+    <p>IP: $(hostname -I | awk '{print $1}')</p>
+    <p>Distribucion: $(lsb_release -ds)</p>
+    <p>Cantidad de Cores: $(nproc)</p>
+
+sudo su - $(whoami)
+ls -l ~/UTN-FRA_SO_Examenes/202406/docker/
+ls -l ~/UTN-FRA_SO_Examenes/202406/docker/index.html 
+cd ~/UTN-FRA_SO_Examenes/202406/docker/
+cat << FIN > index.html
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>2do Parcial - Docker</h1>
+    <p>Nombre: Nahuel Apellido: Gomez</p>
+    <p>Division: 115</p>
+    <p>IP: $(hostname -I | awk '{print $1}')</p>
+    <p>Distribucion: $(lsb_release -ds)</p>
+    <p>Cantidad de Cores: $(nproc)</p>
+</body>
+</html>
+FIN
+
+cat index.html 
+USER_DOCKER="nahuelgomezz"
+APELLIDO="Gomez"
+docker build -t ${USER_DOCKER}/web1-${APELLIDO}:latest .
+APELLIDO="gomez"
+docker build -t ${USER_DOCKER}/web1-${APELLIDO}:latest .
+docker info
+sudo mkdir -p /var/lib/docker/tmp
+sudo chmod 711 /var/lib/docker
+sudo systemctl restart docker
+docker info
+docker build -t ${USER_DOCKER}/web1-${APELLIDO}:latest .
+ls -l
+ls
+cat << FIN > Dockerfile
+FROM nginx
+COPY index.html /usr/share/nginx/html/index.html
+FIN
+
+docker build -t ${USER_DOCKER}/web1-${APELLIDO}:latest .
+docker login -u ${USER_DOCKER}
+docker push ${USER_DOCKER}/web1-${APELLIDO}:latest
+cat << FIN > run.sh
+#!/bin/bash
+docker run -d -p 8080:80 ${USER_DOCKER}/web1-${APELLIDO}:latest
+FIN
+
+chmod +x run.sh
+docker ps
+docker push ${USER_DOCKER}/web1-${APELLIDO}:latest
+docker ps
+cat << FIN > run.sh
+#!/bin/bash
+docker run -d -p 8080:80 ${USER_DOCKER}/web1-${APELLIDO}:latest
+FIN
+
+chmod +x run.sh
+docker ps
+curl localhost:8080
+docker run -p 8080:80 imagen
+docker images
+curl localhost:8080
+docker run -d -p 8080:80 nahuelgomezz/web1-gomez:latest
+docker ps
+curl localhost:8080
+cat run.sh 
+cd
+cat << FIN > ~/RTA_Examen_20260620/Punto_C.sh
+#!/bin/bash
+cd ~/UTN-FRA_SO_Examenes/202406/docker/
+cat << 'FIN1' > index.html
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>2do Parcial - Docker</h1>
+    <p>Nombre: Nahuel Apellido: Gomez</p>
+    <p>Division: 115</p>
+    <p>IP: $(hostname -I | awk '{print $1}')</p>
+    <p>Distribucion: $(lsb_release -ds)</p>
+    <p>Cantidad de Cores: $(nproc)</p>
+</body>
+</html>
+FIN1
+cat << 'FIN2' > Dockerfile
+FROM nginx
+COPY index.html /usr/share/nginx/html/index.html
+FIN2
+docker build -t nahuelgomezz/web1-gomez:latest .
+docker push nahuelgomezz/web1-gomez:latest
+cat << 'FIN3' > run.sh
+#!/bin/bash
+docker run -d -p 8080:80 nahuelgomezz/web1-gomez:latest
+FIN3
+chmod +x run.sh
+./run.sh
+FIN
+
+chmod +x ~/RTA_Examen_20260620/Punto_C.sh
+cd RTA_Examen_202606
+cd RTA_Examen_20260620/
+ls
+cd
+cd UTNFRA_SO_2do_TP_Nahuel_Gomez/
+ls
+cd
+cd UTN-FRA_SO_Examenes/202406
+ls
+cd
+cd UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cp -r ~/UTN-FRA_SO_Examenes/202406/ .
+cp -r ~/RTA_Examen_20260620/ .
+cd
+docker ps
+curl localhost:8080
+vagrant port
+cd ~/UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cp -r ~/RTA_Examen_20260620/ .
+ls 
+ls RTA_Examen_20260620/
+ls Punto_C.sh
+cat Punto_C.sh
+cd RTA_Examen_20260620/
+cat Punto_C.sh 
+cd .
+cd.
+cd ~/UTNFRA_SO_2do_TP_Nahuel_Gomez/
+git status
+git add .
+git commit -m "ADD: Hecho Punto C"
+git push origin main
+git status
+cd
+ansible --version
+cd UTN-FRA_SO_Examenes/202406/ansible/
+ls
+ls roles/
+ld roles/2do_parcial/
+ls roles/2do_parcial/
+ls roles/2do_parcial/vars/
+cat << FIN > roles/2do_parcial/vars/main.yml
+nombre_alumno: "Nahuel"
+apellido_alumno: "Gomez"
+division_alumno: "115"
+FIN
+
+ls -l roles/2do_parcial/
+ls roles/2do_parcial/tests/
+ls roles/2do_parcial/defaults/
+ls roles/2do_parcial/meta/
+ls roles/2do_parcial/tasks/
+ls roles/2do_parcial/tasks/main.yml 
+ls -R roles/2do_parcial/
+ls roles/
+mkdir roles/2do_parcial/templates
+ls roles/2do_parcial/
+cat << FIN > roles/2do_parcial/templates/datos_alumno.j2
+Nombre: {{ nombre_alumno }} Apellido: {{ apellido_alumno }}
+Division: {{ division_alumno }}
+FIN
+
+cat roles/2do_parcial/templates/datos_alumno.j2 
+cat << FIN > roles/2do_parcial/templates/datos_equipo.j2
+IP: {{ ansible_default_ipv4.address }}
+Distribucion: {{ ansible_facts['distribution'] }}
+Cantidad de Cores: {{ ansible_processor_vcpus }}
+FIN
+
+cat << 'FIN' > roles/2do_parcial/tasks/main.yml
+- name: "Crear estructura de directtorios"
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0775'
+  with_items:
+    - "/tmp/2do_parcial/alumno"
+    - "/tmp/2do_parcial/equipo"
+- name: "Generar archivo de datos del alumno"
+  template:
+    src: "datos_alumno.j2"
+    dest: "/tmp/2do_parcial/alumno/datos_alumno.txt"
+- name: "Generar archivo de datos del equipo"
+  template:
+    src: "datos_equipo.j2"
+    dest: "/tmp/2do_parcial/equipo/datos_equipo.txt"
+- name: "Configurar sudoers para el grupo 2PSupervisores"
+  become: yes
+  copy:
+    content: "%2PSupervisores ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/2PSupervisores"
+    validate: '/usr/sbin/visudo -cf %s'
+FIN
+
+ansible-playbook -i inventory playbook.yml
+cat /tmp/2do_parcial/alumno/datos_alumno.txt
+cat /tmp/2do_parcial/equipo/datos_equipo.txt
+cat /etc/sudoers.d/2PSupervisores
+sudo cat /etc/sudoers.d/2PSupervisores
+cd
+cat << 'FIN' > ~/RTA_Examen_20260620/Punto_D.sh
+#!/bin/bash
+cd ~/UTN-FRA_SO_Examenes/202406/ansible/
+cat << 'FIN1' > roles/2do_parcial/vars/main.yml
+nombre_alumno: "Nahuel"
+apellido_alumnos: "Gomez"
+division_alumno: "115"
+FIN1
+cat << 'FIN2' > roles/2do_parcial/templates/datos_alumno.j2
+Nombre: {{ nombre_alumno }} Apellido: {{ apellido_alumno }}
+Division: {{ division_alumno }}
+FIN2
+cat << 'FIN3' > roles/2do_parcial/templates/datos_equipo.j2
+IP: {{ ansible_default_ipv4.address }}
+Distribucion: {{ ansible_facts['distribution'] }}
+Cantidad de Cores: {{ ansible_processor_vcpus }}
+FIN3
+cat << 'FIN4' > roles/2do_parcial/tasks/main.yml
+- name: "Crear estructura de directorios"
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0775'
+  with_items:
+    - "/tmp/2do_parcial/alumno"
+    - "/tmp/2do_parcial/equipo"
+- name: "Generar archivo de datos del alumno"
+  template:
+    src: "datos_alumno.j2"
+    dest: "/tmp/2do_parcial/alumno/datos_alumno.txt"
+- name: "Generar archivo de datos del equipo"
+  template:
+    src: "datos_equipo.j2"
+    dest: "/tmp/2do_parcial/equipo/datos_equipo.txt"
+- name: "Configurar sudoers para el grupo 2PSupervisores"
+  become: yes
+  copy:
+    content: "%2PSupervisores ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/2PSupervisores"
+    validate: '/usr/sbin/visudo -cf %s'
+FIN4
+ansible-playbook -i inventory playbook.yml
+FIN
+
+chmod +x ~/RTA_Examen_20260620/Punto_D.sh
+cd UTNFRA_SO_2do_TP_Nahuel_Gomez/
+cp -r ~/UTN-FRA_SO_Examenes/202406/ .
+cp -r ~/RTA_Examen_20260620/ .
+history -a
